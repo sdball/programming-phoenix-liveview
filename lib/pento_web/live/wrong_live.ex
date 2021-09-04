@@ -1,13 +1,16 @@
 defmodule PentoWeb.WrongLive do
   use PentoWeb, :live_view
 
+  @upper 10
+
   def mount(_params, _session, socket) do
     {
       :ok,
       assign(
         socket,
         score: 0,
-        message: "Guess a number"
+        message: "Guess a number",
+        winning: :rand.uniform(@upper)
       )
     }
   end
@@ -26,8 +29,14 @@ defmodule PentoWeb.WrongLive do
 
   def handle_event("guess", %{"number" => guess}=data, socket) do
     IO.inspect data
-    message = "You guessed #{guess}. That is incorrect. Try again?"
-    score = socket.assigns.score - 1
-    { :noreply, assign(socket, message: message, score: score) }
+    { guess, _ } = Integer.parse(guess)
+    if guess == socket.assigns.winning do
+      message = "You guessed #{guess}. That's right!"
+      score = socket.assigns.score + 1
+      { :noreply, assign(socket, message: message, score: score) }
+    else
+      message = "You guessed #{guess}. That is incorrect. Try again?"
+      { :noreply, assign(socket, message: message) }
+    end
   end
 end
