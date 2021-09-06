@@ -4,6 +4,7 @@ defmodule Pento.Accounts.User do
 
   schema "users" do
     field :email, :string
+    field :username, :string
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
@@ -44,6 +45,15 @@ defmodule Pento.Accounts.User do
     |> unique_constraint(:email)
   end
 
+  defp validate_username(changeset) do
+    changeset
+    |> validate_required([:username])
+    |> validate_format(:username, ~r/^[^\s]+$/, message: "must have no spaces")
+    |> validate_length(:username, max: 160)
+    |> unsafe_validate_unique(:username, Pento.Repo)
+    |> unique_constraint(:username)
+  end
+
   defp validate_password(changeset, opts) do
     changeset
     |> validate_required([:password])
@@ -79,6 +89,21 @@ defmodule Pento.Accounts.User do
     |> case do
       %{changes: %{email: _}} = changeset -> changeset
       %{} = changeset -> add_error(changeset, :email, "did not change")
+    end
+  end
+
+  @doc """
+  A user changeset for changing the username.
+
+  It requires the username to change otherwise an error is added.
+  """
+  def username_changeset(user, attrs) do
+    user
+    |> cast(attrs, [:username])
+    |> validate_username()
+    |> case do
+      %{changes: %{username: _}} = changeset -> changeset
+      %{} = changeset -> add_error(changeset, :username, "did not change")
     end
   end
 
