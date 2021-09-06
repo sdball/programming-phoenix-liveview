@@ -1,5 +1,9 @@
 # Pento
 
+This is the "pento" web application for learning Phoenix LiveView from the book [Programming Phoenix LiveView](https://pragprog.com/titles/liveview/programming-phoenix-liveview/) by by Bruce A. Tate and Sophie DeBenedetto.
+
+## Usage
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
