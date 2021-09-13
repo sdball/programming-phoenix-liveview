@@ -101,4 +101,16 @@ defmodule Pento.Catalog do
   def change_product(%Product{} = product, attrs \\ %{}) do
     Product.changeset(product, attrs)
   end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for a reduced product price.
+
+  ## Examples
+
+  iex> markdown_product(product, %{unit_price: 1.00})
+  %Ecto.Changeset{data: %Product{}}
+  """
+  def markdown_product(%Product{} = product, attrs \\ %{}) do
+    Product.reduced_price(product, attrs)
+  end
 end
