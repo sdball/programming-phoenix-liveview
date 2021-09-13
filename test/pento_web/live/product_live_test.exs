@@ -13,6 +13,8 @@ defmodule PentoWeb.ProductLiveTest do
     %{product: product}
   end
 
+  setup [:register_and_log_in_user]
+
   describe "Index" do
     setup [:create_product]
 
