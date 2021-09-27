@@ -13,6 +13,12 @@ alias Pento.Catalog
 
 products = [
   %{
+    name: "Horizon Zero Dawn",
+    description: "Fight robot dinosaurs",
+    sku: 1234,
+    unit_price: 60.0
+  },
+  %{
     name: "Chess",
     description: "64 squares, 32 pieces, 2 players, 1 game",
     sku: 5_678_910,
