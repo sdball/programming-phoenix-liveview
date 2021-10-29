@@ -34,6 +34,7 @@ defmodule PentoWeb.PromoLive do
   end
 
   def handle_event("save", %{"recipient" => recipient_params}, socket) do
+    :timer.sleep(500) # allow time to demonstrate the "Sending promo" button change
     case Promo.send_promo(socket.assigns.recipient, recipient_params) do
       {:ok, recipient} ->
         {:noreply,
