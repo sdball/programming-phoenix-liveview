@@ -38,7 +38,7 @@ defmodule PentoWeb.PromoLive do
       {:ok, recipient} ->
         {:noreply,
          socket
-         |> put_flash(:info, "Promo sent to #{recipient.changes.name} <#{recipient.changes.email}>")}
+         |> put_flash(:info, "Promo sent to #{recipient.changes.first_name} <#{recipient.changes.email}>")}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply,
