@@ -39,11 +39,13 @@ defmodule PentoWeb.PromoLive do
       {:ok, recipient} ->
         {:noreply,
          socket
+         |> clear_flash
          |> put_flash(:info, "Promo sent to #{recipient.changes.first_name} <#{recipient.changes.email}>")}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply,
          socket
+         |> clear_flash
          |> put_flash(:error, "Failed to send promo")
          |> assign(:changeset, changeset |> Map.put(:action, :validate))}
     end
