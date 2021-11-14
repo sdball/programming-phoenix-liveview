@@ -11,6 +11,10 @@
     return_to: Routes.product_show_path(@socket, :show, @product) %>
 <% end %>
 
+<article class="column">
+  <img alt="thumbnail" width="200" height="200" src={Routes.static_path(@socket, @product.image_upload || "/images/default-thumbnail.jpg")} />
+</article>
+
 <ul>
 
   <li>
