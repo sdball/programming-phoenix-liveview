@@ -22,7 +22,7 @@ defmodule PentoWeb.UserRegistrationControllerTest do
     @tag :capture_log
     test "creates account and logs the user in", %{conn: conn} do
       email = unique_user_email()
-      [ username, _rest ] = String.split(email, "@")
+      [username, _rest] = String.split(email, "@")
 
       conn =
         post(conn, Routes.user_registration_path(conn, :create), %{

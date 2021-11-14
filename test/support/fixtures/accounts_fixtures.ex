@@ -5,7 +5,7 @@ defmodule Pento.AccountsFixtures do
   """
 
   def unique_user_email, do: "user#{System.unique_integer()}@example.com"
-  def unique_user_username, do: "#{unique_user_email() |> String.split("@") |> List.first}"
+  def unique_user_username, do: "#{unique_user_email() |> String.split("@") |> List.first()}"
   def valid_user_password, do: "hello world!"
 
   def valid_user_attributes(attrs \\ %{}) do

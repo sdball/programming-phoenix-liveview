@@ -13,7 +13,6 @@ defmodule PentoWeb.WrongLive do
         winning: :rand.uniform(@upper),
         user: Pento.Accounts.get_user_by_session_token(session["user_token"]),
         session_id: session["live_socket_id"]
-
       )
     }
   end
@@ -34,16 +33,17 @@ defmodule PentoWeb.WrongLive do
     """
   end
 
-  def handle_event("guess", %{"number" => guess}=data, socket) do
-    IO.inspect data
-    { guess, _ } = Integer.parse(guess)
+  def handle_event("guess", %{"number" => guess} = data, socket) do
+    IO.inspect(data)
+    {guess, _} = Integer.parse(guess)
+
     if guess == socket.assigns.winning do
       message = "You guessed #{guess}. That's right!"
       score = socket.assigns.score + 1
-      { :noreply, assign(socket, message: message, score: score) }
+      {:noreply, assign(socket, message: message, score: score)}
     else
       message = "You guessed #{guess}. That is incorrect. Try again?"
-      { :noreply, assign(socket, message: message) }
+      {:noreply, assign(socket, message: message)}
     end
   end
 end

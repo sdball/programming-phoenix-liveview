@@ -7,6 +7,7 @@ defmodule Pento.Promo do
 
   def send_promo(recipient, attrs) do
     changeset = change_recipient(recipient, attrs)
+
     if changeset.valid? do
       {:ok, changeset}
     else
