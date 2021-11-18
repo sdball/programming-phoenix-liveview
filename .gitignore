@@ -29,3 +29,5 @@ pento-*.tar
 npm-debug.log
 /assets/node_modules/
 
+# Ignore files uploaded from the products form
+priv/static/images/live_view_upload*
