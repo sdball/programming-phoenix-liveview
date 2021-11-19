@@ -1,0 +1,36 @@
+<h1>Product Search</h1>
+
+<.form let={f} for={@changeset} phx_change={"validate"} phx_submit={"submit"}>
+  <%= label f, :sku, "Product SKU" %>
+  <%= text_input f, :sku, phx_debounce: "blur" %>
+  <%= error_tag f, :sku %>
+  <%= submit "Search", phx_disable_with: "Searching…" %>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Unit price</th>
+        <th>Sku</th>
+
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="products">
+      <%= for product <- @results do %>
+        <tr id={"product-#{product.id}"}>
+          <td><%= live_redirect product.name, to: Routes.product_show_path(@socket, :show, product) %></td>
+          <td><%= product.description %></td>
+          <td><%= product.unit_price %></td>
+          <td><%= product.sku %></td>
+
+          <td>
+            <span><%= live_patch "Edit", to: Routes.product_index_path(@socket, :edit, product) %></span>
+            <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: product.id, data: [confirm: "Are you sure?"] %></span>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</.form>

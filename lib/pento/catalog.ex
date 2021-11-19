@@ -37,6 +37,11 @@ defmodule Pento.Catalog do
   """
   def get_product!(id), do: Repo.get!(Product, id)
 
+  def search_product_sku(sku) do
+    query = from p in Product, where: p.sku == ^sku
+    Repo.all(query)
+  end
+
   @doc """
   Creates a product.
 
