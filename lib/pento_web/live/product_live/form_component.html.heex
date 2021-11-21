@@ -33,7 +33,15 @@
         <p>
             <%= entry.client_name %> - <%= entry.progress %>%
         </p>
+        <%= for error <- upload_errors(@uploads.image, entry) do %>
+          <p class="alert alert-danger"><%= error %></p>
+        <% end %>
     <% end %>
+
+    <%= for error <- upload_errors(@uploads.image) do %>
+      <p class="alert alert-danger"><%= error %></p>
+    <% end %>
+
 
     <div>
       <%= submit "Save", phx_disable_with: "Saving..." %>
