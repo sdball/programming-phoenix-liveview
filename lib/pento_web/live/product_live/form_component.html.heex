@@ -1,6 +1,7 @@
 <div>
   <h2><%= @title %></h2>
 
+  <div phx-drop-target={@uploads.image.ref}>
   <.form
     let={f}
     for={@changeset}
@@ -38,4 +39,5 @@
       <%= submit "Save", phx_disable_with: "Saving..." %>
     </div>
   </.form>
+  </div>
 </div>
