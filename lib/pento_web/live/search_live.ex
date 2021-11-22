@@ -4,11 +4,11 @@ defmodule PentoWeb.SearchLive do
   alias Pento.Search.Query
 
   def mount(_params, _session, socket) do
-    {:ok, socket |> assign_query() |> assign(:results, []) |> assign_changeset()}
-  end
-
-  def assign_query(socket) do
-    socket |> assign(:query, %Query{})
+    {:ok,
+     socket
+     |> assign(:query, %Query{})
+     |> assign(:results, [])
+     |> assign_changeset()}
   end
 
   def assign_changeset(socket) do
