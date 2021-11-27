@@ -1,0 +1,11 @@
+<section class="row">
+  <%= live_component @socket, PentoWeb.HeaderComponent, heading: "h1", contents: "Survey" %>
+</section>
+
+<section class="row">
+  <%= live_component @socket, PentoWeb.HeaderComponent, heading: "h2", contents: "Demographics" %>
+</section>
+
+<section class="row">
+  <%= live_component @socket, PentoWeb.DemographicLive.FormComponent, user: @current_user %>
+</section>
