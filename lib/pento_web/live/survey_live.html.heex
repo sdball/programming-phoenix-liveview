@@ -2,6 +2,10 @@
   <%= live_component @socket, PentoWeb.HeaderComponent, heading: "h1", contents: "Survey" %>
 </section>
 
+<%= live_component @socket, PentoWeb.ListComponent, items: ["hello", "there"] %>
+
+<%= live_component @socket, PentoWeb.ListComponent, items: Enum.to_list(1..8) %>
+
 <section class="row">
   <%= live_component @socket, PentoWeb.HeaderComponent, heading: "h2", contents: "Demographics" %>
 </section>
